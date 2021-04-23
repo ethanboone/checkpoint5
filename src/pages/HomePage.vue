@@ -1,5 +1,5 @@
 <template>
-  <div class="home row d-flex align-items-center justify-content-center my-2">
+  <div class="home d-flex flex-column my-2">
     <Post v-for="post in state.posts" :key="post.id" :post="post">
     </post>
   </div>

@@ -9,6 +9,12 @@ class PostsService {
     logger.log(res.data)
     AppState.posts = res.data.posts
   }
+
+  async getActive(id) {
+    const res = await api.get(`api/posts/${id}`)
+    logger.log(res.data)
+    AppState.activePost = res.data
+  }
 }
 
 export const postsService = new PostsService()

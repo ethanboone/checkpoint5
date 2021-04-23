@@ -1,8 +1,19 @@
 <template>
-  <div class="col-10 col-md-10 d-flex justify-content-center card my-4 py-2">
-    <p>{{ post.body }}</p>
-    <div v-if="post.imgUrl">
-      <img :src="post.imgUrl" alt="user">
+  <div class="row flex-column align-content-center">
+    <div class="col-10 col-md-6 d-flex card my-4 py-4">
+      <div class="my-2 d-flex justify-content-start align-items-center">
+        <img :src="post.creator.picture" height="50" width="50" class="rounded-circle" alt="user icon">
+        <div class="p-3 d-flex flex-column text-left">
+          <h5>{{ post.creator.name }}</h5>
+          <p>{{ post.creator.createdAt }}</p>
+        </div>
+      </div>
+      <router-link class="link" :to="{name: 'PostDetails', params: {id: post.id}}">
+        <p>{{ post.body }}</p>
+        <div v-if="post.imgUrl">
+          <img :src="post.imgUrl" alt="post image">
+        </div>
+      </router-link>
     </div>
   </div>
 </template>
@@ -22,3 +33,10 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.link {
+    text-decoration: none!important;
+    color:black;
+}
+</style>
