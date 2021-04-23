@@ -4,3 +4,11 @@
   border-color: darken($color: $primary, $amount: 10);
   border-width: medium;
 }
+
+p {
+  margin: 0;
+}
+
+h1,h2,h3,h4,h5 {
+  margin: 0;
+}
