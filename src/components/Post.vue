@@ -11,7 +11,7 @@
       <router-link class="link" :to="{name: 'PostDetails', params: {id: post.id}}">
         <p>{{ post.body }}</p>
         <div v-if="post.imgUrl">
-          <img :src="post.imgUrl" alt="post image">
+          <img :src="post.imgUrl" alt="post image" class="h-100 w-100">
         </div>
       </router-link>
     </div>
