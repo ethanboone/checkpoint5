@@ -6,7 +6,6 @@ import { api } from './AxiosService'
 class PostsService {
   async getAll() {
     const res = await api.get('api/posts')
-    logger.log(res.data)
     AppState.posts = res.data.posts
   }
 
@@ -31,13 +30,13 @@ class PostsService {
     router.push({ name: 'PostDetails', params: { id: res.data.id } })
   }
 
-  async updatePost(post) {
-    await api.put(`api/posts/${post.id}`, post)
+  async like(id) {
+    const res = await api.post(`api/posts/${id}/like`)
+    logger.log(res)
     this.getAll()
   }
 
   async deletePost(id) {
-    //   const res = await api.delete('api/posts/' + id)
     await api.delete('api/posts/' + id)
     this.getAll()
   }
