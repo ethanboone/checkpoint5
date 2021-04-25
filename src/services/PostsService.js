@@ -15,13 +15,9 @@ class PostsService {
     AppState.activePost = res.data
   }
 
-  async getPagePosts(query) {
-    const res = await api.get(`api/posts/page=${query}`)
-    AppState.searchPagePosts = res.data
-  }
-
   async searchPosts(query) {
     const res = await api.get(`api/posts?query=${query}`)
+    logger.log(res.data)
     AppState.searchPosts = res.data
   }
 
@@ -39,6 +35,11 @@ class PostsService {
   async deletePost(id) {
     await api.delete('api/posts/' + id)
     this.getAll()
+  }
+
+  async changePage(query) {
+    const res = await api.get(`api/posts?page=${query}`)
+    logger.log(res.data)
   }
 }
 

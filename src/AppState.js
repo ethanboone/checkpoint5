@@ -12,6 +12,8 @@ export const AppState = reactive({
 
   activeProfile: null,
 
+  profilePosts: null,
+
   activePost: null,
 
   searchPosts: [],

@@ -2,11 +2,13 @@
   <div class="row flex-column align-content-center">
     <div class="col-10 col-md-6 d-flex card my-4 py-2">
       <div class="d-flex justify-content-start align-items-center">
-        <img :src="post.creator.picture" height="50" width="50" class="rounded-circle" alt="user icon">
-        <div class="p-3 d-flex flex-column text-left">
-          <h5>{{ post.creator.name }}</h5>
-          <p>{{ post.creator.createdAt }}</p>
-        </div>
+        <router-link :to="{name: 'ProfilePage', params: {id: post.creatorId}}">
+          <img :src="post.creator.picture" height="50" width="50" class="rounded-circle" alt="user icon">
+          <div class="p-3 d-flex flex-column text-left link">
+            <h5>{{ post.creator.name }}</h5>
+            <p>{{ post.creator.createdAt }}</p>
+          </div>
+        </router-link>
       </div>
       <router-link class="link" :to="{name: 'PostDetails', params: {id: post.id}}">
         <p>{{ post.body }}</p>

@@ -19,6 +19,27 @@
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
+          <form class="form-group" @submit.prevent="search">
+            <label for="search"></label>
+            <small id="helpId" class="form-text text-muted">Search</small>
+            <input type="text"
+                   class="form-control"
+                   name="search"
+                   id="search"
+                   aria-describedby="helpId"
+                   placeholder=""
+                   v-model="state.search.query"
+            >
+            <router-link :to="{name: 'SearchPage', params: {query: state.search.query}}">
+              <button class="btn btn-primary" type="submit">
+                Search
+              </button>
+            </router-link>
+          </form>
+          <router-link :to="{ name: 'Home' }" class="nav-link">
+          </router-link>
+        </li>
+        <li class="nav-item">
           <router-link :to="{ name: 'Home' }" class="nav-link">
             Home
           </router-link>
@@ -78,11 +99,15 @@
 import { AuthService } from '../services/AuthService'
 import { AppState } from '../AppState'
 import { computed, reactive } from 'vue'
+import { logger } from '../utils/Logger'
+import { postsService } from '../services/PostsService'
+
 export default {
   name: 'Navbar',
   setup() {
     const state = reactive({
-      dropOpen: false
+      dropOpen: false,
+      search: {}
     })
     return {
       state,
@@ -92,6 +117,15 @@ export default {
       },
       async logout() {
         await AuthService.logout({ returnTo: window.location.origin })
+      },
+      async search() {
+        try {
+          logger.log(state.search)
+          await postsService.searchPosts(state.search)
+          state.search = {}
+        } catch (error) {
+          logger.error(error)
+        }
       }
     }
   }

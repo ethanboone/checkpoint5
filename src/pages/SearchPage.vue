@@ -1,5 +1,5 @@
 <template>
-  <div class="home d-flex flex-column my-2">
+  <div>
     <div class="flex-row justify-content-around d-flex">
       <button class="btn btn-primary btn-sm" @click="changePage('newer')">
         Next
@@ -21,24 +21,18 @@
 </template>
 
 <script>
-import { reactive, onMounted, computed } from 'vue'
+import { reactive, computed } from 'vue'
 import { AppState } from '../AppState'
 import { postsService } from '../services/PostsService'
 import { logger } from '../utils/Logger'
 
 export default {
-  name: 'Home',
+  name: 'SearchResults',
   setup() {
     const state = reactive({
-      posts: computed(() => AppState.posts)
+      posts: computed(() => AppState.searchPosts)
     })
-    onMounted(async() => {
-      try {
-        await postsService.getAll()
-      } catch (error) {
-        logger.error(error)
-      }
-    })
+    // onMounted(async() => AppState.searchPosts)
     return {
       state,
       async changePage(query) {
@@ -52,14 +46,3 @@ export default {
   }
 }
 </script>
-
-<style scoped lang="scss">
-.home{
-  text-align: center;
-  user-select: none;
-  > img{
-    height: 200px;
-    width: 200px;
-  }
-}
-</style>
