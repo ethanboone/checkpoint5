@@ -1,9 +1,13 @@
 <template>
   <div class="home d-flex flex-column my-2">
-    <button class="btn btn-success" @click="openForm">
-      New Post
-    </button>
-    <div v-if="state.form">
+    <div class="row d-flex flex-row justify-content-center">
+      <div class="col">
+        <button class="btn btn-success" @click="openForm">
+          New Post
+        </button>
+      </div>
+    </div>
+    <div class="row justify-content-center" v-if="state.form">
       <NewPost />
     </div>
     <div class="flex-row justify-content-around d-flex">
