@@ -1,5 +1,6 @@
 <template>
   <div v-if="state.profile && state.posts">
+    <Ad1 />
     <div class="row justify-content-center">
       <div class="col-10 col-md-6 about text-center d-flex flex-column align-items-center">
         <h1>{{ state.profile.name }}</h1>

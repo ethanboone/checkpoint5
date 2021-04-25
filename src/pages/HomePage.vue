@@ -1,8 +1,9 @@
 <template>
   <div class="home d-flex flex-column my-2">
-    <div class="row d-flex flex-row justify-content-center">
-      <div class="col">
-        <button class="btn btn-success" @click="openForm">
+    <div class="row d-flex flex-row justify-content-center ">
+      <Ad1 />
+      <div class="col my-2">
+        <button class="btn btn-success" @click="openForm" v-if="state.user">
           New Post
         </button>
       </div>
@@ -11,19 +12,19 @@
       <NewPost />
     </div>
     <div class="flex-row justify-content-around d-flex">
-      <button class="btn btn-primary btn-sm" @click="changePage('newer')">
+      <button class="btn btn-primary btn-sm my-2" @click="changePage('newer')">
         Next
       </button>
-      <button class="btn btn-primary btn-sm" @click="changePage('older')">
+      <button class="btn btn-primary btn-sm my-2" @click="changePage('older')">
         Previous
       </button>
     </div>
     <Post v-for="post in state.posts" :key="post.id" :post="post" />
     <div class="flex-row justify-content-around d-flex">
-      <button class="btn btn-primary btn-sm" @click="changePage('newer')">
+      <button class="btn btn-primary btn-sm my-2" @click="changePage('newer')">
         Next
       </button>
-      <button class="btn btn-primary btn-sm" @click="changePage('older')">
+      <button class="btn btn-primary btn-sm my-2" @click="changePage('older')">
         Previous
       </button>
     </div>
@@ -41,7 +42,8 @@ export default {
   setup() {
     const state = reactive({
       posts: computed(() => AppState.posts),
-      form: false
+      form: false,
+      user: computed(() => AppState.user.isAuthenticated)
     })
     onMounted(async() => {
       try {

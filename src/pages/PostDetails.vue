@@ -1,6 +1,7 @@
 <template>
   <div class="row justify-content-center">
-    <div class="col-10 col-md-8 card d-flex align-items-center flex-column my-4 py-2" v-if="state.post">
+    <div class="col-12 col-md-8 card d-flex align-items-center flex-column my-4 py-2" v-if="state.post">
+      <Ad2 />
       <div class=" d-flex justify-content-start align-items-center">
         <img :src="state.post.creator.picture" height="50" width="50" class="rounded-circle" alt="user icon">
         <div class="p-3 d-flex flex-column text-left">

@@ -25,6 +25,16 @@ class ProfilesService {
     const res = await api.get(`api/profiles?query=${query}`)
     AppState.searchprofiles = res.data
   }
+
+  async accountPosts(id) {
+    const res = await api.get(`api/profiles/${id}/posts`)
+    AppState.yourPosts = res.data
+  }
+
+  async account() {
+    const res = await api.get('/account')
+    AppState.yourProfile = res.data
+  }
 }
 
 export const profilesService = new ProfilesService()

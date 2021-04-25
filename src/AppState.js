@@ -20,5 +20,13 @@ export const AppState = reactive({
 
   searchProfiles: [],
 
-  searchPagePosts: []
+  searchPagePosts: [],
+
+  ad1: null,
+
+  ad2: null,
+
+  yourPosts: [],
+
+  yourProfile: null
 })

@@ -1,5 +1,5 @@
 <template>
-  <div class="col-8 card">
+  <div class="col-8 card my-2">
     <form @submit.prevent="create">
       <div class="mb-3">
         <label for="body" class="form-label">Post Body</label>
