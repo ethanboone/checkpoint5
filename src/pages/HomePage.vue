@@ -1,5 +1,11 @@
 <template>
   <div class="home d-flex flex-column my-2">
+    <button class="btn btn-success" @click="openForm">
+      New Post
+    </button>
+    <div v-if="state.form">
+      <NewPost />
+    </div>
     <div class="flex-row justify-content-around d-flex">
       <button class="btn btn-primary btn-sm" @click="changePage('newer')">
         Next
@@ -30,7 +36,8 @@ export default {
   name: 'Home',
   setup() {
     const state = reactive({
-      posts: computed(() => AppState.posts)
+      posts: computed(() => AppState.posts),
+      form: false
     })
     onMounted(async() => {
       try {
@@ -47,6 +54,9 @@ export default {
         } catch (error) {
           logger.error(error)
         }
+      },
+      openForm() {
+        state.form = !state.form
       }
     }
   }

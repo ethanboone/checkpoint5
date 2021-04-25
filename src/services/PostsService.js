@@ -24,6 +24,7 @@ class PostsService {
   async createPost(post) {
     const res = await api.post('api/posts', post)
     router.push({ name: 'PostDetails', params: { id: res.data.id } })
+    logger.log(AppState.posts)
   }
 
   async like(id) {

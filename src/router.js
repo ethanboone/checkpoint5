@@ -33,7 +33,7 @@ const routes = [
     component: loadPage('ProfilePage')
   },
   {
-    path: '/search',
+    path: '/search?query=:input',
     name: 'SearchPage',
     component: loadPage('SearchPage')
   }

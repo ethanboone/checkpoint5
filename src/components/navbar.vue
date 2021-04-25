@@ -30,7 +30,7 @@
                    placeholder=""
                    v-model="state.search.query"
             >
-            <router-link :to="{name: 'SearchPage', params: {query: state.search.query}}">
+            <router-link :to="{name: 'SearchPage', params: {input: state.search.query}}">
               <button class="btn btn-primary" type="submit">
                 Search
               </button>

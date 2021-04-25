@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="state.posts">
     <div class="flex-row justify-content-around d-flex">
       <button class="btn btn-primary btn-sm" @click="changePage('newer')">
         Next
@@ -21,20 +21,29 @@
 </template>
 
 <script>
-import { reactive, computed } from 'vue'
+import { reactive, onMounted, computed } from 'vue'
 import { AppState } from '../AppState'
 import { postsService } from '../services/PostsService'
 import { logger } from '../utils/Logger'
+import { useRoute } from 'vue-router'
 
 export default {
   name: 'SearchResults',
   setup() {
+    const route = useRoute()
     const state = reactive({
       posts: computed(() => AppState.searchPosts)
     })
-    // onMounted(async() => AppState.searchPosts)
+    onMounted(async() => {
+      try {
+        postsService.searchPosts(route.params.input)
+      } catch (error) {
+        logger.error(error)
+      }
+    })
     return {
       state,
+      route,
       async changePage(query) {
         try {
           await postsService.changePage(query)
