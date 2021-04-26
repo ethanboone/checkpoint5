@@ -2,7 +2,7 @@
   <div class="home d-flex flex-column my-2">
     <div class="row d-flex flex-row justify-content-center ">
       <Ad1 />
-      <div class="col my-2">
+      <div class="col-12 my-2">
         <button class="btn btn-success" @click="openForm" v-if="state.user">
           New Post
         </button>

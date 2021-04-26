@@ -44,6 +44,11 @@
             Home
           </router-link>
         </li>
+        <li class="nav-item">
+          <router-link :to="{ name: 'About' }" class="nav-link">
+            About
+          </router-link>
+        </li>
       </ul>
       <span class="navbar-text">
         <button
@@ -115,6 +120,7 @@ export default {
       },
       async search() {
         try {
+          logger.log(state.search)
           await postsService.searchPosts(state.search)
           state.search = {}
         } catch (error) {
