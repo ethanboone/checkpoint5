@@ -11,13 +11,11 @@ class PostsService {
 
   async getActive(id) {
     const res = await api.get(`api/posts/${id}`)
-    logger.log(res.data)
     AppState.activePost = res.data
   }
 
   async searchPosts(query) {
     const res = await api.get(`api/posts?query=${query}`)
-    logger.log(res.data)
     AppState.searchPosts = res.data
   }
 
@@ -39,8 +37,7 @@ class PostsService {
   }
 
   async changePage(query) {
-    const res = await api.get(`api/posts?page=${query}`)
-    logger.log(res.data)
+    await api.get(`api/posts?page=${query}`)
   }
 }
 

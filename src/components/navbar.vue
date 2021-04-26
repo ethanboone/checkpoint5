@@ -115,7 +115,6 @@ export default {
       },
       async search() {
         try {
-          logger.log(state.search)
           await postsService.searchPosts(state.search)
           state.search = {}
         } catch (error) {
